@@ -1,0 +1,6 @@
+@SeasonPass.Api_HostAddress = http://localhost:5017
+
+GET {{SeasonPass.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
