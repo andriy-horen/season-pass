@@ -10,7 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeasonPass.Api", "src\SeasonPass.Api\SeasonPass.Api.csproj", "{4A8D02CD-2F4E-4659-A54A-CDA270199162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Api", "src\SeasonPass.Api\SeasonPass.Api.csproj", "{4A8D02CD-2F4E-4659-A54A-CDA270199162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeasonPass.Core", "src\SeasonPass.Core\SeasonPass.Core.csproj", "{F8BDEE83-74B8-478F-BE4A-25F83E539279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeasonPass.Module.SkiResorts", "src\Modules\SeasonPass.Module.SkiResorts\SeasonPass.Module.SkiResorts.csproj", "{2C08F8F5-1020-41BA-B1B2-62F83A00F971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,14 @@ Global
 		{4A8D02CD-2F4E-4659-A54A-CDA270199162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A8D02CD-2F4E-4659-A54A-CDA270199162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A8D02CD-2F4E-4659-A54A-CDA270199162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8BDEE83-74B8-478F-BE4A-25F83E539279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8BDEE83-74B8-478F-BE4A-25F83E539279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8BDEE83-74B8-478F-BE4A-25F83E539279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8BDEE83-74B8-478F-BE4A-25F83E539279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C08F8F5-1020-41BA-B1B2-62F83A00F971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C08F8F5-1020-41BA-B1B2-62F83A00F971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C08F8F5-1020-41BA-B1B2-62F83A00F971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C08F8F5-1020-41BA-B1B2-62F83A00F971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
