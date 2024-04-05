@@ -2,13 +2,11 @@
 
 namespace SeasonPass.Core.Query;
 
-public class QueryDispatcher : IQueryDispatcher
+public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatcher
 {
-    private readonly IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
 
-    public QueryDispatcher(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
-
-    public Task<TQueryResult> Dispatch<TQuery, TQueryResult>(TQuery query, CancellationToken cancellation)
+    public Task<TQueryResult> Dispatch<TQuery, TQueryResult>(TQuery query, CancellationToken cancellation) where TQuery : IQuery<TQueryResult>
     {
         var handler = _serviceProvider.GetRequiredService<IQueryHandler<TQuery, TQueryResult>>();
 
