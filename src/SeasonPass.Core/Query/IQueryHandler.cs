@@ -1,6 +1,6 @@
 ﻿namespace SeasonPass.Core.Query;
 
-public interface IQueryHandler<in TQuery, TQueryResult> where TQuery : IQuery<TQueryResult>
+public interface IQueryHandler<in TQuery, TResult> where TQuery : IQuery<TResult>
 {
-    Task<TQueryResult> Handle(TQuery query, CancellationToken cancellation);
+    Task<TResult> Handle(TQuery query, CancellationToken cancellation);
 }
