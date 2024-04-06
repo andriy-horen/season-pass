@@ -1,16 +1,24 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Concurrent;
 
 namespace SeasonPass.Core.Command;
 
 public class CommandDispatcher(IServiceProvider serviceProvider) : ICommandDispatcher
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
+    private static readonly ConcurrentDictionary<Type, CommandHandlerBase> _commandHandlers = new();
 
-    public Task<TResult> Dispatch<TCommand, TResult>(TCommand command, CancellationToken cancellation)
+    public Task<TResult> Dispatch<TResult>(ICommand<TResult> command, CancellationToken cancellationToken)
     {
-        var handler = _serviceProvider.GetRequiredService<ICommandHandler<TCommand, TResult>>();
+        var commandType = command.GetType();
+        var handler = (CommandHandlerWrapper<TResult>)_commandHandlers.GetOrAdd(commandType, static commandType =>
+        {
+            var wrapperType = typeof(CommandHandlerWrapper<,>).MakeGenericType(commandType, typeof(TResult));
+            var wrapper = Activator.CreateInstance(wrapperType) ?? throw new InvalidOperationException($"Could not create wrapper type for {commandType}");
 
-        return handler.Handle(command, cancellation);
+            return (CommandHandlerBase)wrapper;
+        });
+
+        return handler.Handle(command, _serviceProvider, cancellationToken);
     }
 }
 

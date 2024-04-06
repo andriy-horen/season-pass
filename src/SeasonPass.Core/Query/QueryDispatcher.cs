@@ -7,7 +7,7 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
     private readonly IServiceProvider _serviceProvider = serviceProvider;
     private static readonly ConcurrentDictionary<Type, QueryHandlerBase> _queryHandlers = new();
 
-    public Task<TResult> Dispatch<TResult>(IQuery<TResult> query, CancellationToken cancellation)
+    public Task<TResult> Dispatch<TResult>(IQuery<TResult> query, CancellationToken cancellationToken)
     {
         var queryType = query.GetType();
         var handler = (QueryHandlerWrapper<TResult>)_queryHandlers.GetOrAdd(queryType, static queryType =>
@@ -18,6 +18,6 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
             return (QueryHandlerBase)wrapper;
         });
 
-        return handler.Handle(query, _serviceProvider, cancellation);
+        return handler.Handle(query, _serviceProvider, cancellationToken);
     }
 }
