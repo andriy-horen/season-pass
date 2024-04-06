@@ -1,15 +1,23 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Concurrent;
 
 namespace SeasonPass.Core.Query;
 
 public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatcher
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
+    private static readonly ConcurrentDictionary<Type, QueryHandlerBase> _queryHandlers = new();
 
-    public Task<TResult> Dispatch<TQuery, TResult>(TQuery query, CancellationToken cancellation) where TQuery : IQuery<TResult>
+    public Task<TResult> Dispatch<TResult>(IQuery<TResult> query, CancellationToken cancellation)
     {
-        var handler = _serviceProvider.GetRequiredService<IQueryHandler<TQuery, TResult>>();
+        var queryType = query.GetType();
+        var handler = (QueryHandlerWrapper<TResult>)_queryHandlers.GetOrAdd(queryType, static queryType =>
+        {
+            var wrapperType = typeof(QueryHandlerWrapper<,>).MakeGenericType(queryType, typeof(TResult));
+            var wrapper = Activator.CreateInstance(wrapperType) ?? throw new InvalidOperationException($"Could not create wrapper type for {queryType}");
 
-        return handler.Handle(query, cancellation);
+            return (QueryHandlerBase)wrapper;
+        });
+
+        return handler.Handle(query, _serviceProvider, cancellation);
     }
 }

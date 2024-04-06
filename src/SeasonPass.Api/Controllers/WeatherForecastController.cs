@@ -31,7 +31,7 @@ namespace SeasonPass.Api.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task<IEnumerable<WeatherForecast>> Get(CancellationToken cancellationToken)
         {
-            return await _queryDispatcher.Dispatch<GetWeatherForecaseQuery, IEnumerable<WeatherForecast>>(new GetWeatherForecaseQuery(5), cancellationToken);
+            return await _queryDispatcher.Dispatch(new GetWeatherForecaseQuery(5), cancellationToken);
         }
     }
 }
