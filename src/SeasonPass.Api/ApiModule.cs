@@ -1,10 +1,11 @@
-﻿using Autofac;
+﻿using AutofacModule = Autofac.Module;
 using SeasonPass.Core.Command;
 using SeasonPass.Core.Query;
+using Autofac;
 
 namespace SeasonPass.Api;
 
-public class ApiModule : Module
+public class ApiModule : AutofacModule
 {
     protected override void Load(ContainerBuilder builder)
     {
