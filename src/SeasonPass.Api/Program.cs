@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting;
+using SeasonPass.Module.Postgres;
+using SeasonPass.Module.SkiResorts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Host
     .ConfigureContainer<ContainerBuilder>((container) =>
     {
         container.RegisterAssemblyModules(typeof(Program).Assembly);
+        container.RegisterAssemblyModules(typeof(SkiResortsModule).Assembly);
+        container.RegisterAssemblyModules(typeof(PostgresModule).Assembly);
     });
 
 builder.Services.AddControllers();

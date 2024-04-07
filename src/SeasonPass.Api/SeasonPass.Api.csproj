@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\modules\SeasonPass.Module.Postgres\SeasonPass.Module.Postgres.csproj" />
     <ProjectReference Include="..\Modules\SeasonPass.Module.SkiResorts\SeasonPass.Module.SkiResorts.csproj" />
     <ProjectReference Include="..\SeasonPass.Core\SeasonPass.Core.csproj" />
   </ItemGroup>

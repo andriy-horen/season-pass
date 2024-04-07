@@ -1,10 +1,9 @@
 ﻿namespace SeasonPass.Module.SkiResorts.Models;
 
-public record SkiResortId(long Id);
 
 public class SkiResort
 {
-    public SkiResortId Id { get; set; } = new(-1);
+    public long Id { get; set; }
 
     public string Name { get; set; } = string.Empty;
     

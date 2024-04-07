@@ -5,7 +5,7 @@ using AutofacModule = Autofac.Module;
 
 namespace SeasonPass.Module.Postgres;
 
-internal class PostgresModule: AutofacModule
+public class PostgresModule: AutofacModule
 {
     protected override void Load(ContainerBuilder builder)
     {
