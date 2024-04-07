@@ -2,7 +2,7 @@
 
 public record Elevation
 {
-    public required int BaseElevation { get; init; }
+    public required int Base { get; init; }
     
-    public required int TopElevation { get; init; }
+    public required int Top { get; init; }
 }

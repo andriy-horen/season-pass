@@ -39,14 +39,9 @@ namespace SeasonPass.Module.Postgres.Migrations
                     rating = table.Column<float>(type: "real", nullable: true),
                     website = table.Column<string>(type: "text", nullable: true),
                     logo_url = table.Column<string>(type: "text", nullable: true),
-                    elevation_base_elevation = table.Column<int>(type: "integer", nullable: true),
-                    elevation_top_elevation = table.Column<int>(type: "integer", nullable: true),
-                    operation_open_hour = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
-                    operation_close_hour = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
-                    operation_season_duration = table.Column<string>(type: "text", nullable: true),
-                    ticket_prices_adults = table.Column<string>(type: "text", nullable: true),
-                    ticket_prices_youth = table.Column<string>(type: "text", nullable: true),
-                    ticket_prices_children = table.Column<string>(type: "text", nullable: true),
+                    external_url = table.Column<string>(type: "text", nullable: true),
+                    elevation_base = table.Column<int>(type: "integer", nullable: true),
+                    elevation_top = table.Column<int>(type: "integer", nullable: true),
                     slope_info_blue_slopes_length = table.Column<float>(type: "real", nullable: true),
                     slope_info_red_slopes_length = table.Column<float>(type: "real", nullable: true),
                     slope_info_black_slopes_length = table.Column<float>(type: "real", nullable: true),
@@ -59,13 +54,25 @@ namespace SeasonPass.Module.Postgres.Migrations
                     infrastructure_tbar_lift_count = table.Column<int>(type: "integer", nullable: true),
                     infrastructure_ropetow_lift_count = table.Column<int>(type: "integer", nullable: true),
                     infrastructure_carpet_lift_count = table.Column<int>(type: "integer", nullable: true),
-                    infrastructure_heli_skiing_available = table.Column<bool>(type: "boolean", nullable: true),
-                    infrastructure_cat_skiing_available = table.Column<bool>(type: "boolean", nullable: true),
-                    country_id = table.Column<long>(type: "bigint", nullable: false)
+                    infrastructure_heli_skiing = table.Column<bool>(type: "boolean", nullable: true),
+                    infrastructure_cat_skiing = table.Column<bool>(type: "boolean", nullable: true),
+                    operation_open_hour = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
+                    operation_close_hour = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
+                    operation_season_duration = table.Column<string>(type: "text", nullable: true),
+                    ticket_prices_adults = table.Column<string>(type: "text", nullable: true),
+                    ticket_prices_youth = table.Column<string>(type: "text", nullable: true),
+                    ticket_prices_children = table.Column<string>(type: "text", nullable: true),
+                    country_id = table.Column<long>(type: "bigint", nullable: false),
+                    country2_id = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_ski_resort", x => x.ski_resort_id);
+                    table.ForeignKey(
+                        name: "fk_ski_resort_country_country2_id",
+                        column: x => x.country2_id,
+                        principalTable: "country",
+                        principalColumn: "country_id");
                     table.ForeignKey(
                         name: "fk_ski_resort_country_country_id",
                         column: x => x.country_id,
@@ -104,6 +111,11 @@ namespace SeasonPass.Module.Postgres.Migrations
                 name: "ix_ski_resort_country_id",
                 table: "ski_resort",
                 column: "country_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_ski_resort_country2_id",
+                table: "ski_resort",
+                column: "country2_id");
         }
 
         /// <inheritdoc />

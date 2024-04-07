@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240407193541_InitialMigration")]
+    [Migration("20240407233542_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -112,6 +112,10 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("country_id");
 
+                    b.Property<string>("ExternalUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("external_url");
+
                     b.Property<string>("LogoUrl")
                         .HasColumnType("text")
                         .HasColumnName("logo_url");
@@ -129,11 +133,18 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("text")
                         .HasColumnName("website");
 
+                    b.Property<long?>("country2_id")
+                        .HasColumnType("bigint")
+                        .HasColumnName("country2_id");
+
                     b.HasKey("SkiResortId")
                         .HasName("pk_ski_resort");
 
                     b.HasIndex("CountryId")
                         .HasDatabaseName("ix_ski_resort_country_id");
+
+                    b.HasIndex("country2_id")
+                        .HasDatabaseName("ix_ski_resort_country2_id");
 
                     b.ToTable("ski_resort", (string)null);
                 });
@@ -155,19 +166,24 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_ski_resort_country_country_id");
 
+                    b.HasOne("SeasonPass.Module.Common.Models.Country", "Country2")
+                        .WithMany()
+                        .HasForeignKey("country2_id")
+                        .HasConstraintName("fk_ski_resort_country_country2_id");
+
                     b.OwnsOne("SeasonPass.Module.SkiResorts.Models.Elevation", "Elevation", b1 =>
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
                                 .HasColumnName("ski_resort_id");
 
-                            b1.Property<int>("BaseElevation")
+                            b1.Property<int>("Base")
                                 .HasColumnType("integer")
-                                .HasColumnName("elevation_base_elevation");
+                                .HasColumnName("elevation_base");
 
-                            b1.Property<int>("TopElevation")
+                            b1.Property<int>("Top")
                                 .HasColumnType("integer")
-                                .HasColumnName("elevation_top_elevation");
+                                .HasColumnName("elevation_top");
 
                             b1.HasKey("SkiResortId");
 
@@ -192,9 +208,9 @@ namespace SeasonPass.Module.Postgres.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("infrastructure_carpet_lift_count");
 
-                            b1.Property<bool?>("CatSkiingAvailable")
+                            b1.Property<bool?>("CatSkiing")
                                 .HasColumnType("boolean")
-                                .HasColumnName("infrastructure_cat_skiing_available");
+                                .HasColumnName("infrastructure_cat_skiing");
 
                             b1.Property<int?>("ChairliftCount")
                                 .HasColumnType("integer")
@@ -212,9 +228,9 @@ namespace SeasonPass.Module.Postgres.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("infrastructure_gondola_lift_count");
 
-                            b1.Property<bool?>("HeliSkiingAvailable")
+                            b1.Property<bool?>("HeliSkiing")
                                 .HasColumnType("boolean")
-                                .HasColumnName("infrastructure_heli_skiing_available");
+                                .HasColumnName("infrastructure_heli_skiing");
 
                             b1.Property<int?>("RopetowLiftCount")
                                 .HasColumnType("integer")
@@ -319,6 +335,8 @@ namespace SeasonPass.Module.Postgres.Migrations
                         });
 
                     b.Navigation("Country");
+
+                    b.Navigation("Country2");
 
                     b.Navigation("Elevation");
 

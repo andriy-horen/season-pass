@@ -18,7 +18,7 @@ public class LiftInfrastructure
 
     public int? CarpetLiftCount { get; set; }
 
-    public bool? HeliSkiingAvailable { get; set; }
+    public bool? HeliSkiing { get; set; }
 
-    public bool? CatSkiingAvailable { get; set; }
+    public bool? CatSkiing { get; set; }
 }
