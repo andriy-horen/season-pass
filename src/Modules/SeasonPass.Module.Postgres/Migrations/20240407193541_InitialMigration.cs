@@ -20,8 +20,8 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     iso_name = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    alpha2code = table.Column<string>(type: "text", nullable: false),
-                    alpha3code = table.Column<string>(type: "text", nullable: false),
+                    alpha2_code = table.Column<string>(type: "text", nullable: false),
+                    alpha3_code = table.Column<string>(type: "text", nullable: false),
                     numeric_code = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

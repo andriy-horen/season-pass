@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240407182020_InitialMigration")]
+    [Migration("20240407193541_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -37,12 +37,12 @@ namespace SeasonPass.Module.Postgres.Migrations
                     b.Property<string>("Alpha2Code")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("alpha2code");
+                        .HasColumnName("alpha2_code");
 
                     b.Property<string>("Alpha3Code")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("alpha3code");
+                        .HasColumnName("alpha3_code");
 
                     b.Property<string>("IsoName")
                         .IsRequired()

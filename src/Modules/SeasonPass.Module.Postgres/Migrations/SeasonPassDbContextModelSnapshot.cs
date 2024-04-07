@@ -34,12 +34,12 @@ namespace SeasonPass.Module.Postgres.Migrations
                     b.Property<string>("Alpha2Code")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("alpha2code");
+                        .HasColumnName("alpha2_code");
 
                     b.Property<string>("Alpha3Code")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("alpha3code");
+                        .HasColumnName("alpha3_code");
 
                     b.Property<string>("IsoName")
                         .IsRequired()
