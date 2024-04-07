@@ -1,11 +1,12 @@
-﻿namespace SeasonPass.Module.SkiResorts.Models;
+﻿using SeasonPass.Module.Common.Models;
 
+namespace SeasonPass.Module.SkiResorts.Models;
 
 public class SkiResort
 {
-    public long Id { get; set; }
+    public required long SkiResortId { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
     
     public float? Rating { get; set; }
 
@@ -15,11 +16,15 @@ public class SkiResort
 
     public Elevation? Elevation { get; set; }
 
-    public OperationInfo? OperationInfo { get; set; }
+    public OperationInfo? Operation { get; set; }
 
     public TicketPrices? TicketPrices { get; set; }
 
     public SlopeInfo? SlopeInfo { get; set; }
 
-    public LiftInfrastructure? LiftInfrastructure { get; set; }
+    public LiftInfrastructure? Infrastructure { get; set; }
+
+    public required Country Country { get; set; }
+
+    public IList<LiftLocation>? Lifts { get; set; }
 }
