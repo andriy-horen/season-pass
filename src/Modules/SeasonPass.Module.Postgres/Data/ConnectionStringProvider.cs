@@ -1,8 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Npgsql;
-using SeasonPass.Core.Data;
 
 namespace SeasonPass.Module.Postgres.Data;
+
+public interface IConnectionStringProvider
+{
+    string GetConnectionString();
+}
 
 public class ConnectionStringProvider(IConfiguration configuration) : IConnectionStringProvider
 {

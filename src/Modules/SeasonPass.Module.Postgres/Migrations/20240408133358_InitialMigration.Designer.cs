@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240407233542_InitialMigration")]
+    [Migration("20240408133358_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -60,6 +60,14 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                     b.HasKey("CountryId")
                         .HasName("pk_country");
+
+                    b.HasIndex("Alpha2Code")
+                        .IsUnique()
+                        .HasDatabaseName("ix_country_alpha2_code");
+
+                    b.HasIndex("Alpha3Code")
+                        .IsUnique()
+                        .HasDatabaseName("ix_country_alpha3_code");
 
                     b.ToTable("country", (string)null);
                 });

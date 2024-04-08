@@ -58,6 +58,14 @@ namespace SeasonPass.Module.Postgres.Migrations
                     b.HasKey("CountryId")
                         .HasName("pk_country");
 
+                    b.HasIndex("Alpha2Code")
+                        .IsUnique()
+                        .HasDatabaseName("ix_country_alpha2_code");
+
+                    b.HasIndex("Alpha3Code")
+                        .IsUnique()
+                        .HasDatabaseName("ix_country_alpha3_code");
+
                     b.ToTable("country", (string)null);
                 });
 

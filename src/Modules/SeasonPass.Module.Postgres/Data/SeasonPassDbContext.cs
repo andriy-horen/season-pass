@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using SeasonPass.Core.Data;
+using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.SkiResorts.Models;
 
 namespace SeasonPass.Module.Postgres.Data;
 
-internal class SeasonPassDbContext: DbContext
+public class SeasonPassDbContext: DbContext
 {
     private readonly IConnectionStringProvider _connectionStringProvider;
 
@@ -32,6 +32,10 @@ internal class SeasonPassDbContext: DbContext
             entity.OwnsOne(e => e.SlopeInfo);
             entity.OwnsOne(e => e.Infrastructure);
         });
+
+        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha2Code).IsUnique();
+        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha3Code).IsUnique();
+
     }
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

@@ -103,6 +103,18 @@ namespace SeasonPass.Module.Postgres.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "ix_country_alpha2_code",
+                table: "country",
+                column: "alpha2_code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_country_alpha3_code",
+                table: "country",
+                column: "alpha3_code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "ix_lift_location_ski_resort_id",
                 table: "lift_location",
                 column: "ski_resort_id");
