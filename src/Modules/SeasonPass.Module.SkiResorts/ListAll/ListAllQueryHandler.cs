@@ -14,8 +14,11 @@ public class ListAllQueryHandler : IQueryHandler<ListAllQuery, IList<SkiResort>>
         _dbContext = dbContext;
     }
 
-    public async Task<IList<SkiResort>> Handle(ListAllQuery query, CancellationToken cancellationToken)
+    public async Task<IList<SkiResort>> Handle(ListAllQuery query, CancellationToken ct)
     {
-        return await _dbContext.Set<SkiResort>().Take(100).ToListAsync(cancellationToken);
+        return await _dbContext.Set<SkiResort>()
+            .Include(sr => sr.Country)
+            .Where(sr => EF.Functions.ILike(sr.Name, $"%{query.SearchQuery}%") && (query.CountryCode == null || sr.Country.Alpha2Code == query.CountryCode.ToUpper()))
+            .ToListAsync(ct);
     }
 }

@@ -13,8 +13,5 @@ public class ApiModule : AutofacModule
 
         builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().SingleInstance();
         builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().SingleInstance();
-
-        builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IQueryHandler<,>));
-        builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandler<,>));
     }
 }

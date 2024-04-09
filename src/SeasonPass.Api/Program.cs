@@ -1,8 +1,9 @@
-using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using SeasonPass.Module.Postgres;
 using SeasonPass.Module.Postgres.Data;
 using SeasonPass.Module.SkiResorts;
+using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,10 @@ builder.Host
         container.RegisterAssemblyModules(typeof(SkiResortsModule).Assembly);
         container.RegisterAssemblyModules(typeof(PostgresModule).Assembly);
     });
-
-builder.Services.AddControllers();
+builder.Services.AddFastEndpoints(o => o.Assemblies =
+    [
+        typeof(SkiResortsModule).Assembly,
+    ]);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,8 +36,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseFastEndpoints(c =>
+{
+    c.Endpoints.RoutePrefix = "api";
+});
 
 app.Run();
