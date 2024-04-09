@@ -4,6 +4,7 @@ using SeasonPass.Module.Postgres;
 using SeasonPass.Module.Postgres.Data;
 using SeasonPass.Module.SkiResorts;
 using FastEndpoints;
+using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,19 +21,19 @@ builder.Services.AddFastEndpoints(o => o.Assemblies =
     [
         typeof(SkiResortsModule).Assembly,
     ]);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.SwaggerDocument(
+       o =>
+       {
+           o.DocumentSettings = s =>
+           {
+               s.Title = "Season Pass API";
+               s.Version = "v0";
+           };
+       });
+
 builder.Services.AddDbContext<SeasonPassDbContext>();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
@@ -40,5 +41,10 @@ app.UseFastEndpoints(c =>
 {
     c.Endpoints.RoutePrefix = "api";
 });
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerGen();
+}
 
 app.Run();

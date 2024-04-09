@@ -1,5 +1,7 @@
 ﻿using FastEndpoints;
+using Microsoft.AspNetCore.Http;
 using SeasonPass.Core.Query;
+using SeasonPass.Module.SkiResorts.Models;
 
 namespace SeasonPass.Module.SkiResorts.ListAll;
 
@@ -20,6 +22,8 @@ public class ListAllEndpoint(IQueryDispatcher queryDispatcher): Endpoint<ListAll
     {
         Get("resorts");
         AllowAnonymous();
+        Description(d => d
+            .Produces<IList<SkiResort>>(200, "application/json+custom"));
     }
 
     public override async Task HandleAsync(ListAllRequest req, CancellationToken ct)
