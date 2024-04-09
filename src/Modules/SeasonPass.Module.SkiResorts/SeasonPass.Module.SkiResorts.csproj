@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeasonPass.Module.Common\SeasonPass.Module.Common.csproj" />
+    <ProjectReference Include="..\SeasonPass.Module.Postgres\SeasonPass.Module.Postgres.csproj" />
   </ItemGroup>
 
 </Project>

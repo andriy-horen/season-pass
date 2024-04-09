@@ -1,12 +1,11 @@
-﻿using SeasonPass.Module.Common.Models;
+﻿using SeasonPass.Core.Models;
+using SeasonPass.Module.Common.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SeasonPass.Module.SkiResorts.Models;
 
-public class SkiResort
+public class SkiResort : EntityBase
 {
-    public required long SkiResortId { get; set; }
-
     public required string Name { get; set; }
     
     public float? Rating { get; set; }

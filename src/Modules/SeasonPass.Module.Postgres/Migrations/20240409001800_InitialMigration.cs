@@ -16,7 +16,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                 name: "country",
                 columns: table => new
                 {
-                    country_id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     iso_name = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
@@ -26,14 +26,14 @@ namespace SeasonPass.Module.Postgres.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_country", x => x.country_id);
+                    table.PrimaryKey("pk_country", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ski_resort",
                 columns: table => new
                 {
-                    ski_resort_id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
                     rating = table.Column<float>(type: "real", nullable: true),
@@ -67,17 +67,17 @@ namespace SeasonPass.Module.Postgres.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_ski_resort", x => x.ski_resort_id);
+                    table.PrimaryKey("pk_ski_resort", x => x.id);
                     table.ForeignKey(
                         name: "fk_ski_resort_country_country2_id",
                         column: x => x.country2_id,
                         principalTable: "country",
-                        principalColumn: "country_id");
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "fk_ski_resort_country_country_id",
                         column: x => x.country_id,
                         principalTable: "country",
-                        principalColumn: "country_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -85,7 +85,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                 name: "lift_location",
                 columns: table => new
                 {
-                    lift_location_id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
                     latitude = table.Column<decimal>(type: "numeric", nullable: false),
@@ -94,12 +94,12 @@ namespace SeasonPass.Module.Postgres.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_lift_location", x => x.lift_location_id);
+                    table.PrimaryKey("pk_lift_location", x => x.id);
                     table.ForeignKey(
                         name: "fk_lift_location_ski_resort_ski_resort_id",
                         column: x => x.ski_resort_id,
                         principalTable: "ski_resort",
-                        principalColumn: "ski_resort_id");
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(

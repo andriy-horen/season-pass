@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SeasonPass.Core.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SeasonPass.Module.Common.Models;
 
-public class Country
+public class Country : EntityBase
 {
-    public long CountryId { get; set; }
-    
     public required string IsoName { get; set; }
 
     public required string Name { get; set; }

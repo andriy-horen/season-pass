@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240408133358_InitialMigration")]
+    [Migration("20240409001800_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -27,12 +27,12 @@ namespace SeasonPass.Module.Postgres.Migrations
 
             modelBuilder.Entity("SeasonPass.Module.Common.Models.Country", b =>
                 {
-                    b.Property<long>("CountryId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("country_id");
+                        .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("CountryId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Alpha2Code")
                         .IsRequired()
@@ -58,7 +58,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("numeric_code");
 
-                    b.HasKey("CountryId")
+                    b.HasKey("Id")
                         .HasName("pk_country");
 
                     b.HasIndex("Alpha2Code")
@@ -74,12 +74,12 @@ namespace SeasonPass.Module.Postgres.Migrations
 
             modelBuilder.Entity("SeasonPass.Module.SkiResorts.Models.LiftLocation", b =>
                 {
-                    b.Property<int>("LiftLocationId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("lift_location_id");
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LiftLocationId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<decimal>("Latitude")
                         .HasColumnType("numeric")
@@ -98,7 +98,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("ski_resort_id");
 
-                    b.HasKey("LiftLocationId")
+                    b.HasKey("Id")
                         .HasName("pk_lift_location");
 
                     b.HasIndex("SkiResortId")
@@ -109,12 +109,12 @@ namespace SeasonPass.Module.Postgres.Migrations
 
             modelBuilder.Entity("SeasonPass.Module.SkiResorts.Models.SkiResort", b =>
                 {
-                    b.Property<long>("SkiResortId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("ski_resort_id");
+                        .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("SkiResortId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("CountryId")
                         .HasColumnType("bigint")
@@ -145,7 +145,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("country2_id");
 
-                    b.HasKey("SkiResortId")
+                    b.HasKey("Id")
                         .HasName("pk_ski_resort");
 
                     b.HasIndex("CountryId")
@@ -183,7 +183,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
-                                .HasColumnName("ski_resort_id");
+                                .HasColumnName("id");
 
                             b1.Property<int>("Base")
                                 .HasColumnType("integer")
@@ -199,14 +199,14 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SkiResortId")
-                                .HasConstraintName("fk_ski_resort_ski_resort_ski_resort_id");
+                                .HasConstraintName("fk_ski_resort_ski_resort_id");
                         });
 
                     b.OwnsOne("SeasonPass.Module.SkiResorts.Models.LiftInfrastructure", "Infrastructure", b1 =>
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
-                                .HasColumnName("ski_resort_id");
+                                .HasColumnName("id");
 
                             b1.Property<int?>("AerialCablecarCount")
                                 .HasColumnType("integer")
@@ -254,14 +254,14 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SkiResortId")
-                                .HasConstraintName("fk_ski_resort_ski_resort_ski_resort_id");
+                                .HasConstraintName("fk_ski_resort_ski_resort_id");
                         });
 
                     b.OwnsOne("SeasonPass.Module.SkiResorts.Models.OperationInfo", "Operation", b1 =>
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
-                                .HasColumnName("ski_resort_id");
+                                .HasColumnName("id");
 
                             b1.Property<TimeOnly?>("CloseHour")
                                 .HasColumnType("time without time zone")
@@ -281,14 +281,14 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SkiResortId")
-                                .HasConstraintName("fk_ski_resort_ski_resort_ski_resort_id");
+                                .HasConstraintName("fk_ski_resort_ski_resort_id");
                         });
 
                     b.OwnsOne("SeasonPass.Module.SkiResorts.Models.SlopeInfo", "SlopeInfo", b1 =>
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
-                                .HasColumnName("ski_resort_id");
+                                .HasColumnName("id");
 
                             b1.Property<float>("BlackSlopesLength")
                                 .HasColumnType("real")
@@ -312,14 +312,14 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SkiResortId")
-                                .HasConstraintName("fk_ski_resort_ski_resort_ski_resort_id");
+                                .HasConstraintName("fk_ski_resort_ski_resort_id");
                         });
 
                     b.OwnsOne("SeasonPass.Module.SkiResorts.Models.TicketPrices", "TicketPrices", b1 =>
                         {
                             b1.Property<long>("SkiResortId")
                                 .HasColumnType("bigint")
-                                .HasColumnName("ski_resort_id");
+                                .HasColumnName("id");
 
                             b1.Property<string>("Adults")
                                 .HasColumnType("text")
@@ -339,7 +339,7 @@ namespace SeasonPass.Module.Postgres.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SkiResortId")
-                                .HasConstraintName("fk_ski_resort_ski_resort_ski_resort_id");
+                                .HasConstraintName("fk_ski_resort_ski_resort_id");
                         });
 
                     b.Navigation("Country");

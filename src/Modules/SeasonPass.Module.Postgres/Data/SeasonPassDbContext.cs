@@ -1,19 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using SeasonPass.Module.Common.Models;
-using SeasonPass.Module.SkiResorts.Models;
 
 namespace SeasonPass.Module.Postgres.Data;
 
 public class SeasonPassDbContext: DbContext
 {
     private readonly IConnectionStringProvider _connectionStringProvider;
+    private readonly IList<IDbContextModelBuilder> _modelBuilders;
 
-    public DbSet<SkiResort> SkiResorts { get; set; }
-
-    public SeasonPassDbContext(IConnectionStringProvider connectionStringProvider)
+    public SeasonPassDbContext(IConnectionStringProvider connectionStringProvider, IList<IDbContextModelBuilder> modelBuilders)
     {
         _connectionStringProvider = connectionStringProvider;
+        _modelBuilders = modelBuilders;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,17 +23,10 @@ public class SeasonPassDbContext: DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<SkiResort>(entity => {
-            entity.OwnsOne(e => e.Elevation);
-            entity.OwnsOne(e => e.Operation);
-            entity.OwnsOne(e => e.TicketPrices);
-            entity.OwnsOne(e => e.SlopeInfo);
-            entity.OwnsOne(e => e.Infrastructure);
-        });
-
-        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha2Code).IsUnique();
-        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha3Code).IsUnique();
-
+        foreach (var customBuilder in _modelBuilders)
+        {
+            customBuilder.Update(modelBuilder);
+        }
     }
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

@@ -9,7 +9,7 @@ public class ApiModule : AutofacModule
 {
     protected override void Load(ContainerBuilder builder)
     {
-        var assembly = typeof(Program).Assembly;
+        var assembly = typeof(ApiModule).Assembly;
 
         builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().SingleInstance();
         builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().SingleInstance();

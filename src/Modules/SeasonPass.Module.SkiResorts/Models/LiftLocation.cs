@@ -1,9 +1,9 @@
-﻿namespace SeasonPass.Module.SkiResorts.Models;
+﻿using SeasonPass.Core.Models;
 
-public class LiftLocation
+namespace SeasonPass.Module.SkiResorts.Models;
+
+public class LiftLocation : EntityBase
 {
-    public required int LiftLocationId { get; set; }
-
     public required string Name { get; set; }
 
     public required decimal Latitude { get; set; }
