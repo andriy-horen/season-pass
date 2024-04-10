@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Module.Common", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Module.Postgres", "src\modules\SeasonPass.Module.Postgres\SeasonPass.Module.Postgres.csproj", "{8FD1DF94-956D-4AFA-BEA4-63F1A38A971B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeasonPass.Api", "src\SeasonPass.Api\SeasonPass.Api.csproj", "{446067B0-D88B-4528-8D61-6216C3F7AFD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Api", "src\SeasonPass.Api\SeasonPass.Api.csproj", "{446067B0-D88B-4528-8D61-6216C3F7AFD4}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SeasonPass.Web", "src\SeasonPass.Web\SeasonPass.Web.esproj", "{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,12 @@ Global
 		{446067B0-D88B-4528-8D61-6216C3F7AFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446067B0-D88B-4528-8D61-6216C3F7AFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446067B0-D88B-4528-8D61-6216C3F7AFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
