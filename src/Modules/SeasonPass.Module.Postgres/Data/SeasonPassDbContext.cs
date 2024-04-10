@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using SeasonPass.Module.Common.Models;
 
 namespace SeasonPass.Module.Postgres.Data;
 
@@ -27,6 +28,9 @@ public class SeasonPassDbContext: DbContext
         {
             customBuilder.Update(modelBuilder);
         }
+
+        // Common mappings
+        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha2Code).IsUnique();
     }
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

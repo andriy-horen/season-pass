@@ -16,8 +16,5 @@ internal class SkiResortsModelBuilder : IDbContextModelBuilder
             entity.OwnsOne(e => e.SlopeInfo);
             entity.OwnsOne(e => e.Infrastructure);
         });
-
-        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha2Code).IsUnique();
-        modelBuilder.Entity<Country>().HasIndex(c => c.Alpha3Code).IsUnique();
     }
 }
