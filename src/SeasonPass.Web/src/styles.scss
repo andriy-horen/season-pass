@@ -1,2 +1,12 @@
-@import "primeng/resources/themes/nova/theme.css";
+@import "primeflex/primeflex.css";
+@import "primeng/resources/themes/aura-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+
+:root {
+  --font-family: "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html {
+  font-size: 14px;
+}
