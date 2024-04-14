@@ -1,3 +1,48 @@
-<p-toolbar>
-  <button pButton [text]="true" [plain]="true">Ski resorts</button>
-</p-toolbar>
+<nav id="bottom-navigation" class="align-content-center">
+  <ul class="flex flex-nowrap justify-content-around list-none pl-0 m-0">
+    @for(item of items; track item.id) {
+    <li class="flex-grow-1">
+      @if(isLinkItem(item)) {
+      <ng-container
+        *ngTemplateOutlet="linkItem; context: { $implicit: item }"
+      ></ng-container>
+      } @else if (isAddItem(item)) {
+      <ng-container
+        *ngTemplateOutlet="addItem; context: { $implicit: item }"
+      ></ng-container>
+      }
+    </li>
+    }
+  </ul>
+</nav>
+
+<ng-template #linkItem let-item>
+  <a
+    [routerLink]="item.routerLink"
+    class="flex flex-column align-items-center no-underline text-color"
+  >
+    <span class="material-symbols-rounded">{{ item.icon }}</span>
+    <span class="text-color-secondary" [style.fontSize]="'11px'">{{
+      item.title
+    }}</span>
+  </a>
+</ng-template>
+
+<ng-template #addItem let-item>
+  <p-speedDial
+    [model]="item.subItems"
+    [(visible)]="isAddItemExpanded"
+    direction="up"
+  >
+    <ng-template pTemplate="item">
+      <a
+        *ngIf="isAddItemExpanded"
+        pRipple
+        class="p-speeddial-action"
+        role="menuitem"
+      >
+        <span class="material-symbols-rounded">settings</span>
+      </a>
+    </ng-template>
+  </p-speedDial>
+</ng-template>
