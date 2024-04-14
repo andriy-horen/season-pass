@@ -42,7 +42,7 @@ export class BottomNavComponent {
   readonly items: BottomNavItem[] = [
     new LinkItem('bottom-nav-home', 'home', 'Home', ['#']),
     new LinkItem('bottom-nav-season', 'ac_unit', 'Season', ['#']),
-    new AddItem('bottom-nav-add', [{}, {}, {}]),
+    new AddItem('bottom-nav-add', [{ icon: 'today' }, { icon: 'date_range' }]),
     new LinkItem('bottom-nav-resorts', 'landscape_2', 'Resorts', ['#']),
     new LinkItem('bottom-nav-you', 'downhill_skiing', 'You', ['#']),
   ];

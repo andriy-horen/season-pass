@@ -34,14 +34,14 @@
     [(visible)]="isAddItemExpanded"
     direction="up"
   >
-    <ng-template pTemplate="item">
+    <ng-template pTemplate="item" let-subitem>
       <a
         *ngIf="isAddItemExpanded"
         pRipple
         class="p-speeddial-action"
         role="menuitem"
       >
-        <span class="material-symbols-rounded">settings</span>
+        <span class="material-symbols-rounded">{{ subitem.icon }}</span>
       </a>
     </ng-template>
   </p-speedDial>
