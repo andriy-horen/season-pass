@@ -1,7 +1,7 @@
 <nav id="bottom-navigation" class="align-content-center">
   <ul class="flex flex-nowrap justify-content-around list-none pl-0 m-0">
     @for(item of items; track item.id) {
-    <li class="flex-grow-1">
+    <li class="flex-grow-1 relative">
       @if(isLinkItem(item)) {
       <ng-container
         *ngTemplateOutlet="linkItem; context: { $implicit: item }"
