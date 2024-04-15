@@ -14,24 +14,21 @@ class LinkItem implements BottomNavItem {
     readonly id: string,
     readonly icon: string,
     readonly title: string,
-    readonly routerLink: string[]
+    readonly routerLink: string[],
   ) {}
 }
 
 class AddItem implements BottomNavItem {
-  constructor(readonly id: string, readonly subItems: MenuItem[]) {}
+  constructor(
+    readonly id: string,
+    readonly subItems: MenuItem[],
+  ) {}
 }
 
 @Component({
   selector: 'sp-bottom-nav',
   standalone: true,
-  imports: [
-    CommonModule,
-    ToolbarModule,
-    ButtonModule,
-    SpeedDialModule,
-    NgTemplateOutlet,
-  ],
+  imports: [CommonModule, ToolbarModule, ButtonModule, SpeedDialModule, NgTemplateOutlet],
   templateUrl: './bottom-nav.component.html',
   styleUrl: './bottom-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,10 +8,9 @@ describe('SkiResortComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SkiResortComponent]
-    })
-    .compileComponents();
-    
+      imports: [SkiResortComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SkiResortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

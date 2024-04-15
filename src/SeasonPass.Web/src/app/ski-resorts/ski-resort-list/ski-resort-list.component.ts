@@ -6,8 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [],
   templateUrl: './ski-resort-list.component.html',
   styleUrl: './ski-resort-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SkiResortListComponent {
-
-}
+export class SkiResortListComponent {}
