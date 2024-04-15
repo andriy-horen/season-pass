@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using SeasonPass.Module.Common.Models;
 
 namespace SeasonPass.Module.Postgres.Data;
 
-public class SeasonPassDbContext: DbContext
+public class SeasonPassDbContext : DbContext
 {
     private readonly IConnectionStringProvider _connectionStringProvider;
     private readonly IList<IDbContextModelBuilder> _modelBuilders;
 
-    public SeasonPassDbContext(IConnectionStringProvider connectionStringProvider, IList<IDbContextModelBuilder> modelBuilders)
+    public SeasonPassDbContext(
+        IConnectionStringProvider connectionStringProvider,
+        IList<IDbContextModelBuilder> modelBuilders
+    )
     {
         _connectionStringProvider = connectionStringProvider;
         _modelBuilders = modelBuilders;
@@ -18,7 +21,7 @@ public class SeasonPassDbContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var connectionString = _connectionStringProvider.GetConnectionString();
-        
+
         optionsBuilder.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
     }
 
@@ -32,9 +35,10 @@ public class SeasonPassDbContext: DbContext
         // Common mappings
         modelBuilder.Entity<Country>().HasIndex(c => c.Alpha2Code).IsUnique();
     }
+
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        /** 
+        /**
          * By default EF Core uses the DbSet<TEntity> property name as the table name
          * This changes behavior to use the type name instead
          */

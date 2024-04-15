@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.Postgres.Data;
 using SeasonPass.Module.SkiResorts.Models;
@@ -9,7 +9,8 @@ internal class SkiResortsModelBuilder : IDbContextModelBuilder
 {
     public void Update(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<SkiResort>(entity => {
+        modelBuilder.Entity<SkiResort>(entity =>
+        {
             entity.OwnsOne(e => e.Elevation);
             entity.OwnsOne(e => e.Operation);
             entity.OwnsOne(e => e.TicketPrices);

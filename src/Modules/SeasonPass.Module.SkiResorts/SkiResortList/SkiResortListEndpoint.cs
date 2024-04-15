@@ -1,4 +1,4 @@
-﻿using FastEndpoints;
+using FastEndpoints;
 using Microsoft.AspNetCore.Http;
 using SeasonPass.Core.Query;
 using SeasonPass.Module.Common.Models;
@@ -16,12 +16,12 @@ public class SkiResortListRequest : IPagedRequest
 
     [QueryParam]
     public long Reference { get; set; }
-    
+
     [QueryParam]
     public int PageSize { get; set; }
 }
 
-public class SkiResortListEndpoint(IQueryDispatcher queryDispatcher): Endpoint<SkiResortListRequest>
+public class SkiResortListEndpoint(IQueryDispatcher queryDispatcher) : Endpoint<SkiResortListRequest>
 {
     private readonly IQueryDispatcher _queryDispatcher = queryDispatcher;
 
@@ -29,16 +29,17 @@ public class SkiResortListEndpoint(IQueryDispatcher queryDispatcher): Endpoint<S
     {
         Get("resorts");
         AllowAnonymous();
-        Description(d => d
-            .Accepts<SkiResortListRequest>()
-            .Produces<IList<SkiResort>>(200, "application/json+custom"));
+        Description(d =>
+            d.Accepts<SkiResortListRequest>("application/json+custom")
+                .Produces<IList<SkiResort>>(200, "application/json+custom")
+        );
     }
 
     public override async Task HandleAsync(SkiResortListRequest req, CancellationToken ct)
     {
         var query = new SkiResortListQuery(req.Reference, req.PageSize, req.SearchQuery, req.Country);
         var data = await _queryDispatcher.Dispatch(query, ct);
-        
+
         await SendAsync(data);
     }
 }

@@ -1,10 +1,10 @@
-﻿using Autofac;
+using Autofac;
 using SeasonPass.Module.Postgres.Data;
 using AutofacModule = Autofac.Module;
 
 namespace SeasonPass.Module.Postgres;
 
-public class PostgresModule: AutofacModule
+public class PostgresModule : AutofacModule
 {
     protected override void Load(ContainerBuilder builder)
     {

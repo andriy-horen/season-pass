@@ -1,4 +1,4 @@
-﻿using SeasonPass.Core.Models;
+using SeasonPass.Core.Models;
 
 namespace SeasonPass.Module.SkiResorts.Models;
 

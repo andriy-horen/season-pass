@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using SeasonPass.Core.Command;
 using SeasonPass.Core.Query;
 using SeasonPass.Module.Postgres.Data;

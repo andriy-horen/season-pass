@@ -1,4 +1,4 @@
-﻿namespace SeasonPass.Module.SkiResorts.Models;
+namespace SeasonPass.Module.SkiResorts.Models;
 
 public class SlopeInfo
 {

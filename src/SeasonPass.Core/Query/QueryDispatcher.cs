@@ -10,13 +10,20 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
     public Task<TResult> Dispatch<TResult>(IQuery<TResult> query, CancellationToken cancellationToken)
     {
         var queryType = query.GetType();
-        var handler = (QueryHandlerWrapper<TResult>)_queryHandlers.GetOrAdd(queryType, static queryType =>
-        {
-            var wrapperType = typeof(QueryHandlerWrapper<,>).MakeGenericType(queryType, typeof(TResult));
-            var wrapper = Activator.CreateInstance(wrapperType) ?? throw new InvalidOperationException($"Could not create wrapper type for {queryType}");
+        var handler =
+            (QueryHandlerWrapper<TResult>)
+                _queryHandlers.GetOrAdd(
+                    queryType,
+                    static queryType =>
+                    {
+                        var wrapperType = typeof(QueryHandlerWrapper<,>).MakeGenericType(queryType, typeof(TResult));
+                        var wrapper =
+                            Activator.CreateInstance(wrapperType)
+                            ?? throw new InvalidOperationException($"Could not create wrapper type for {queryType}");
 
-            return (QueryHandlerBase)wrapper;
-        });
+                        return (QueryHandlerBase)wrapper;
+                    }
+                );
 
         return handler.Handle(query, _serviceProvider, cancellationToken);
     }

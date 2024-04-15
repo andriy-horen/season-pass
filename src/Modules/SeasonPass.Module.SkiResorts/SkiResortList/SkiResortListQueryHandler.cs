@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SeasonPass.Core.Query;
 using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.Postgres.Data;
@@ -17,7 +17,9 @@ public class SkiResortListQueryHandler : IQueryHandler<SkiResortListQuery, IPage
 
     public async Task<IPagedResponse<SkiResort>> Handle(SkiResortListQuery query, CancellationToken ct)
     {
-        var records = await _dbContext.Set<SkiResort>().AsNoTracking()
+        var records = await _dbContext
+            .Set<SkiResort>()
+            .AsNoTracking()
             .Include(sr => sr.Country)
             .Where(sr => sr.Id > query.Reference)
             .Where(sr => EF.Functions.ILike(sr.Name, $"%{query.SearchQuery}%"))

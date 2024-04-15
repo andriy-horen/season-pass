@@ -1,14 +1,11 @@
-﻿namespace SeasonPass.Core.Models;
+namespace SeasonPass.Core.Models;
 
 public interface IEntity<T>
 {
     T Id { get; }
 }
 
-public abstract class EntityBase : EntityBase<long>
-{
-
-}
+public abstract class EntityBase : EntityBase<long> { }
 
 public abstract class EntityBase<T> : IEntity<T>
 {

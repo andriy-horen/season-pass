@@ -1,4 +1,4 @@
-﻿namespace SeasonPass.Module.SkiResorts.Models;
+namespace SeasonPass.Module.SkiResorts.Models;
 
 // TODO: rewrite to be an array of ticket price e.g. { value = 60.5, currency = "EUR", type = TicketType.Adult }
 public class TicketPrices

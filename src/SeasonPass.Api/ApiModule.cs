@@ -1,7 +1,7 @@
-﻿using AutofacModule = Autofac.Module;
+﻿using Autofac;
 using SeasonPass.Core.Command;
 using SeasonPass.Core.Query;
-using Autofac;
+using AutofacModule = Autofac.Module;
 
 namespace SeasonPass.Api;
 
@@ -9,8 +9,6 @@ public class ApiModule : AutofacModule
 {
     protected override void Load(ContainerBuilder builder)
     {
-        var assembly = typeof(ApiModule).Assembly;
-
         builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().SingleInstance();
         builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().SingleInstance();
     }

@@ -1,5 +1,5 @@
-﻿using SeasonPass.Core.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using SeasonPass.Core.Models;
 
 namespace SeasonPass.Module.Common.Models;
 
