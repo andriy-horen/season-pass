@@ -21,6 +21,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Api", "src\SeasonPass.Api\SeasonPass.Api.csproj", "{446067B0-D88B-4528-8D61-6216C3F7AFD4}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SeasonPass.Web", "src\SeasonPass.Web\SeasonPass.Web.esproj", "{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}"
+	ProjectSection(ProjectDependencies) = postProject
+		{90B23918-D856-4FF3-A78A-945EFC254CDB} = {90B23918-D856-4FF3-A78A-945EFC254CDB}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Module.Typings", "src\Modules\SeasonPass.Module.Typings\SeasonPass.Module.Typings.csproj", "{90B23918-D856-4FF3-A78A-945EFC254CDB}"
 EndProject

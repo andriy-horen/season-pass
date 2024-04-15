@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { SkiResort } from '@typings/ski-resort-module';
 import { Observable } from 'rxjs';
-
-interface SkiResort {}
 
 @Injectable({
   providedIn: 'root',

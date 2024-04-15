@@ -7,4 +7,10 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\SeasonPass.Web\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <GeneratedTypings Include="$(SolutionDir)\_build\typings\**\*.*" />
+  </ItemGroup>
+  <Target Name="CopyTypings" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(GeneratedTypings)" DestinationFolder="$(MSBuildProjectDirectory)\src\typings" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
