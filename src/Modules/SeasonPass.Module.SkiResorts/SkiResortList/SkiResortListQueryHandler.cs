@@ -4,18 +4,18 @@ using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.Postgres.Data;
 using SeasonPass.Module.SkiResorts.Models;
 
-namespace SeasonPass.Module.SkiResorts.ListAll;
+namespace SeasonPass.Module.SkiResorts.SkiResortList;
 
-public class ListAllQueryHandler : IQueryHandler<ListAllQuery, IPagedResponse<SkiResort>>
+public class SkiResortListQueryHandler : IQueryHandler<SkiResortListQuery, IPagedResponse<SkiResort>>
 {
     private readonly SeasonPassDbContext _dbContext;
 
-    public ListAllQueryHandler(SeasonPassDbContext dbContext)
+    public SkiResortListQueryHandler(SeasonPassDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<IPagedResponse<SkiResort>> Handle(ListAllQuery query, CancellationToken ct)
+    public async Task<IPagedResponse<SkiResort>> Handle(SkiResortListQuery query, CancellationToken ct)
     {
         var records = await _dbContext.Set<SkiResort>().AsNoTracking()
             .Include(sr => sr.Country)

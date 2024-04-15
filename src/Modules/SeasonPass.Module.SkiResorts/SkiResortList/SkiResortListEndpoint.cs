@@ -4,9 +4,9 @@ using SeasonPass.Core.Query;
 using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.SkiResorts.Models;
 
-namespace SeasonPass.Module.SkiResorts.ListAll;
+namespace SeasonPass.Module.SkiResorts.SkiResortList;
 
-public class ListAllRequest : IPagedRequest
+public class SkiResortListRequest : IPagedRequest
 {
     [QueryParam]
     public string? Country { get; set; }
@@ -21,7 +21,7 @@ public class ListAllRequest : IPagedRequest
     public int PageSize { get; set; }
 }
 
-public class ListAllEndpoint(IQueryDispatcher queryDispatcher): Endpoint<ListAllRequest>
+public class SkiResortListEndpoint(IQueryDispatcher queryDispatcher): Endpoint<SkiResortListRequest>
 {
     private readonly IQueryDispatcher _queryDispatcher = queryDispatcher;
 
@@ -30,13 +30,13 @@ public class ListAllEndpoint(IQueryDispatcher queryDispatcher): Endpoint<ListAll
         Get("resorts");
         AllowAnonymous();
         Description(d => d
-            .Accepts<ListAllRequest>()
+            .Accepts<SkiResortListRequest>()
             .Produces<IList<SkiResort>>(200, "application/json+custom"));
     }
 
-    public override async Task HandleAsync(ListAllRequest req, CancellationToken ct)
+    public override async Task HandleAsync(SkiResortListRequest req, CancellationToken ct)
     {
-        var query = new ListAllQuery(req.Reference, req.PageSize, req.SearchQuery, req.Country);
+        var query = new SkiResortListQuery(req.Reference, req.PageSize, req.SearchQuery, req.Country);
         var data = await _queryDispatcher.Dispatch(query, ct);
         
         await SendAsync(data);
