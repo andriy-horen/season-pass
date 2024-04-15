@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Api", "src\Seaso
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SeasonPass.Web", "src\SeasonPass.Web\SeasonPass.Web.esproj", "{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeasonPass.Module.Typings", "src\Modules\SeasonPass.Module.Typings\SeasonPass.Module.Typings.csproj", "{90B23918-D856-4FF3-A78A-945EFC254CDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4FA7FA2-57C4-48A3-8CC5-E6E5A674F839}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{90B23918-D856-4FF3-A78A-945EFC254CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B23918-D856-4FF3-A78A-945EFC254CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B23918-D856-4FF3-A78A-945EFC254CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B23918-D856-4FF3-A78A-945EFC254CDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
