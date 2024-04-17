@@ -1,1 +1,7 @@
-<p>ski-resort-list works!</p>
+@for (resort of resorts$ | async; track resort.name) {
+  <div class="mb-2">
+    <p-card>
+      <p>{{ resort.name }}</p>
+    </p-card>
+  </div>
+}

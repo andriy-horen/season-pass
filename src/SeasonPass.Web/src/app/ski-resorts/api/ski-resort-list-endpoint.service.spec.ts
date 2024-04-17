@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
-import { SkiResortListEndpoint } from './list-all-endpoint.service';
+import { SkiResortListEndpoint } from './ski-resort-list-endpoint.service';
 
 describe('SkiResortListEndpoint', () => {
   let service: SkiResortListEndpoint;
