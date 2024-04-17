@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240417212850_InitialMigration")]
+    [Migration("20240417223558_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -123,6 +123,11 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("slug");
+
+                    b.Property<string[]>("Tags")
+                        .IsRequired()
+                        .HasColumnType("text[]")
+                        .HasColumnName("tags");
 
                     b.Property<string>("Website")
                         .HasColumnType("text")

@@ -64,6 +64,7 @@ export interface SkiResort
 	country: Country;
 	country2?: Country;
 	lifts?: LiftLocation[];
+	tags: string[];
 	id: number;
 }
 export interface SkiResortListRequest

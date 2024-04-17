@@ -61,7 +61,8 @@ namespace SeasonPass.Module.Postgres.Migrations
                     ticket_prices_youth = table.Column<string>(type: "text", nullable: true),
                     ticket_prices_children = table.Column<string>(type: "text", nullable: true),
                     country_id = table.Column<long>(type: "bigint", nullable: false),
-                    country2_id = table.Column<long>(type: "bigint", nullable: true)
+                    country2_id = table.Column<long>(type: "bigint", nullable: true),
+                    tags = table.Column<string[]>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {

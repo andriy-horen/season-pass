@@ -34,4 +34,6 @@ public class SkiResort : EntityBase
     public Country? Country2 { get; set; }
 
     public IList<LiftLocation>? Lifts { get; set; }
+
+    public required IList<string> Tags { get; set; } = [];
 }

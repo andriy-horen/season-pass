@@ -121,6 +121,11 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("text")
                         .HasColumnName("slug");
 
+                    b.Property<string[]>("Tags")
+                        .IsRequired()
+                        .HasColumnType("text[]")
+                        .HasColumnName("tags");
+
                     b.Property<string>("Website")
                         .HasColumnType("text")
                         .HasColumnName("website");
