@@ -29,7 +29,7 @@ public class SkiResortListEndpoint(IQueryDispatcher queryDispatcher) : Endpoint<
     {
         Get("resorts");
         AllowAnonymous();
-        Description(d => d.Accepts<SkiResortListRequest>().Produces<IList<SkiResort>>(200));
+        Description(d => d.Accepts<SkiResortListRequest>().Produces<IPagedResponse<SkiResort>>(200));
     }
 
     public override async Task HandleAsync(SkiResortListRequest req, CancellationToken ct)
