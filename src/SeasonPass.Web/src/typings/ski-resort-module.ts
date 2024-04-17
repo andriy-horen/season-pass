@@ -27,6 +27,7 @@ export interface LiftLocation
 	name: string;
 	latitude: number;
 	longitude: number;
+	id: number;
 }
 export interface OperationInfo
 {
@@ -62,6 +63,7 @@ export interface SkiResort
 	country: Country;
 	country2?: Country;
 	lifts?: LiftLocation[];
+	id: number;
 }
 export interface SkiResortListRequest
 {

@@ -48,7 +48,7 @@ public static class TypingsConfiguration
                 typeof(SkiResort),
                 typeof(SkiResortListRequest)
             ],
-            conf => conf.WithPublicProperties().AutoI(false).ExportTo("ski-resort-module.ts")
+            conf => conf.FlattenHierarchy().WithPublicProperties().AutoI(false).ExportTo("ski-resort-module.ts")
         );
     }
 }
