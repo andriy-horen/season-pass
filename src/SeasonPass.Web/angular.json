@@ -54,6 +54,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.js",
+            "ssl": true,
+            "sslCert": ".cert/season-pass.pem",
+            "sslKey": ".cert/season-pass.key"
+          },
           "configurations": {
             "production": {
               "buildTarget": "season-pass:build:production"
