@@ -10,3 +10,10 @@ export interface Country
 	alpha3Code: string;
 	numericCode: number;
 }
+export interface PagedResponse<T>
+{
+	records: T[];
+	reference: number;
+	pageSize: number;
+	hasNext: boolean;
+}

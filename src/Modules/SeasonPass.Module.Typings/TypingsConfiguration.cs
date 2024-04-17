@@ -2,6 +2,7 @@ using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
 using SeasonPass.Module.Common.Models;
 using SeasonPass.Module.SkiResorts.Models;
+using SeasonPass.Module.SkiResorts.SkiResortList;
 
 namespace SeasonPass.Module.Typings;
 
@@ -29,7 +30,7 @@ public static class TypingsConfiguration
     public static void ConfigureCommonModule(this ConfigurationBuilder builder)
     {
         builder.ExportAsInterfaces(
-            [typeof(Country)],
+            [typeof(Country), typeof(PagedResponse<>)],
             conf => conf.WithPublicProperties().AutoI(false).ExportTo("common-module.ts")
         );
     }
@@ -45,6 +46,7 @@ public static class TypingsConfiguration
                 typeof(SlopeInfo),
                 typeof(TicketPrices),
                 typeof(SkiResort),
+                typeof(SkiResortListRequest)
             ],
             conf => conf.WithPublicProperties().AutoI(false).ExportTo("ski-resort-module.ts")
         );
