@@ -8,6 +8,8 @@ public class SkiResort : EntityBase
 {
     public required string Name { get; set; }
 
+    public required string Slug { get; set; }
+
     public float? Rating { get; set; }
 
     public string? Website { get; set; }

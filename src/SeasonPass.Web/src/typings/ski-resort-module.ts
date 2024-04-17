@@ -51,6 +51,7 @@ export interface TicketPrices
 export interface SkiResort
 {
 	name: string;
+	slug: string;
 	rating?: number;
 	website?: string;
 	logoUrl?: string;

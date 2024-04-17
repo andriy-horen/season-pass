@@ -18,11 +18,8 @@ namespace SeasonPass.Module.Postgres.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    iso_name = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    alpha2_code = table.Column<string>(type: "text", nullable: false),
-                    alpha3_code = table.Column<string>(type: "text", nullable: false),
-                    numeric_code = table.Column<int>(type: "integer", nullable: false)
+                    alpha2_code = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,6 +33,7 @@ namespace SeasonPass.Module.Postgres.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
+                    slug = table.Column<string>(type: "text", nullable: false),
                     rating = table.Column<float>(type: "real", nullable: true),
                     website = table.Column<string>(type: "text", nullable: true),
                     logo_url = table.Column<string>(type: "text", nullable: true),
@@ -106,12 +104,6 @@ namespace SeasonPass.Module.Postgres.Migrations
                 name: "ix_country_alpha2_code",
                 table: "country",
                 column: "alpha2_code",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "ix_country_alpha3_code",
-                table: "country",
-                column: "alpha3_code",
                 unique: true);
 
             migrationBuilder.CreateIndex(

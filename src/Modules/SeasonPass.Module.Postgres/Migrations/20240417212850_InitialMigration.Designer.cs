@@ -12,7 +12,7 @@ using SeasonPass.Module.Postgres.Data;
 namespace SeasonPass.Module.Postgres.Migrations
 {
     [DbContext(typeof(SeasonPassDbContext))]
-    [Migration("20240409001800_InitialMigration")]
+    [Migration("20240417212850_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -39,24 +39,10 @@ namespace SeasonPass.Module.Postgres.Migrations
                         .HasColumnType("text")
                         .HasColumnName("alpha2_code");
 
-                    b.Property<string>("Alpha3Code")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("alpha3_code");
-
-                    b.Property<string>("IsoName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("iso_name");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
-
-                    b.Property<int>("NumericCode")
-                        .HasColumnType("integer")
-                        .HasColumnName("numeric_code");
 
                     b.HasKey("Id")
                         .HasName("pk_country");
@@ -64,10 +50,6 @@ namespace SeasonPass.Module.Postgres.Migrations
                     b.HasIndex("Alpha2Code")
                         .IsUnique()
                         .HasDatabaseName("ix_country_alpha2_code");
-
-                    b.HasIndex("Alpha3Code")
-                        .IsUnique()
-                        .HasDatabaseName("ix_country_alpha3_code");
 
                     b.ToTable("country", (string)null);
                 });
@@ -136,6 +118,11 @@ namespace SeasonPass.Module.Postgres.Migrations
                     b.Property<float?>("Rating")
                         .HasColumnType("real")
                         .HasColumnName("rating");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("slug");
 
                     b.Property<string>("Website")
                         .HasColumnType("text")
