@@ -37,10 +37,10 @@ export interface OperationInfo
 }
 export interface SlopeInfo
 {
-	blueSlopesLength: number;
-	redSlopesLength: number;
-	blackSlopesLength: number;
-	skiroutesLength: number;
+	blueSlopesLength?: number;
+	redSlopesLength?: number;
+	blackSlopesLength?: number;
+	skiroutesLength?: number;
 }
 export interface TicketPrices
 {

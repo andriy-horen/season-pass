@@ -1,10 +1,71 @@
 @for (resort of resorts$ | async; track resort.id) {
   <div class="mb-2">
     <p-card>
-      @if (resort.logoUrl) {
-        <img [src]="buildLogoUrl(resort.logoUrl)" [alt]="resort.slug" />
-      }
-      <p>{{ resort.name }}</p>
+      <div class="flex align-items-center">
+        <div class="logo-wrapper">
+          @if (resort.logoUrl) {
+            <img class="resort-logo" [src]="buildLogoUrl(resort.logoUrl)" [alt]="resort.slug" />
+          } @else {
+            <div class="no-logo flex align-items-center">
+              <span class="material-symbols-rounded">ac_unit</span>
+              <span class="material-symbols-rounded">ac_unit</span>
+              <span class="material-symbols-rounded">ac_unit</span>
+            </div>
+          }
+        </div>
+        <div class="resort-name ml-2">{{ resort.name }}</div>
+      </div>
+      <div class="resort-content mt-3 pt-2 text-xs">
+        @if (resort.elevation) {
+          <div class="vertical-diff flex align-items-center gap-1">
+            <div class="flex align-items-center gap-1">
+              <span class="material-symbols-rounded mb-1 text-base">altitude</span>
+              {{ resort.elevation.top - resort.elevation.base }} m
+            </div>
+            <div class="flex flex-column">
+              <span class="flex align-items-center">
+                <span class="material-symbols-rounded text-base">arrow_upward_alt</span
+                >{{ resort.elevation.top }} m
+              </span>
+              <span class="flex align-items-center">
+                <span class="material-symbols-rounded text-base">arrow_downward_alt</span>
+                {{ resort.elevation.base }} m
+              </span>
+            </div>
+          </div>
+        }
+
+        @if (resort.ticketPrices?.adults) {
+          <div class="flex align-items-center mt-2">
+            <span class="material-symbols-rounded text-base"> payments </span>
+            <span class="ml-1">{{ resort.ticketPrices?.adults }}</span>
+          </div>
+        }
+        @if (slopeInfo(resort.slopeInfo); as slopes) {
+          <div class="flex align-items-center gap-1">
+            <div class="flex align-items-center">
+              <span class="material-symbols-rounded text-base">downhill_skiing</span>
+              <span class="ml-1">{{ slopes.total }} km</span>
+            </div>
+            <div class="slopes flex flex-column mt-2 ml-2">
+              <span class="flex align-items-center">{{ slopes.beginner }} km </span>
+              <span class="flex align-items-center">{{ slopes.intermediate }} km </span>
+              <span class="flex align-items-center">{{ slopes.expert }} km </span>
+              @if (slopes.skiroutes > 0) {
+                <span class="flex align-items-center">{{ slopes.skiroutes }} km </span>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="tags mt-2">
+          @for (tag of resort.tags; track tag) {
+            <p-chip class="mr-1">
+              <span class="text-xs">{{ tag }}</span>
+            </p-chip>
+          }
+        </div>
+      </div>
     </p-card>
   </div>
 }
