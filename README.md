@@ -1,4 +1,4 @@
-# season-pass
+# Season Pass
 Track you ski/snb season progression
 
 ### Commands
