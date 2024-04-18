@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SlopeInfo } from '@typings/ski-resort-module';
+import { OperationInfo, SlopeInfo } from '@typings/ski-resort-module';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 import { map } from 'rxjs/operators';
@@ -48,5 +48,15 @@ export class SkiResortListComponent {
       skiroutes,
       total,
     };
+  }
+
+  openHours(operationInfo: OperationInfo | undefined) {
+    if (!operationInfo?.openHour || !operationInfo?.closeHour) {
+      return null;
+    }
+
+    const { openHour, closeHour } = operationInfo;
+
+    return `${openHour} - ${closeHour}`;
   }
 }

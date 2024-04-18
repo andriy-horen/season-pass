@@ -35,6 +35,13 @@
           </div>
         }
 
+        @if (openHours(resort.operation); as openHours) {
+          <div class="flex align-items-center mt-2">
+            <span class="material-symbols-rounded text-base"> schedule </span>
+            <span class="ml-1">{{ openHours }}</span>
+          </div>
+        }
+
         @if (resort.ticketPrices?.adults) {
           <div class="flex align-items-center mt-2">
             <span class="material-symbols-rounded text-base"> payments </span>
