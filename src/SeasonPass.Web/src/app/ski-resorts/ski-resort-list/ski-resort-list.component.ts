@@ -18,4 +18,8 @@ export class SkiResortListComponent {
   readonly resorts$ = this.listEndpoint
     .resorts({ pageSize: 50, reference: 0 })
     .pipe(map((response) => response.records));
+
+  buildLogoUrl(logoUrl: string) {
+    return `assets/resorts/logos/${logoUrl}`;
+  }
 }

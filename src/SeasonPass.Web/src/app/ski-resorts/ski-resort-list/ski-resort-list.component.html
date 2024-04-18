@@ -1,6 +1,9 @@
 @for (resort of resorts$ | async; track resort.id) {
   <div class="mb-2">
     <p-card>
+      @if (resort.logoUrl) {
+        <img [src]="buildLogoUrl(resort.logoUrl)" [alt]="resort.slug" />
+      }
       <p>{{ resort.name }}</p>
     </p-card>
   </div>
